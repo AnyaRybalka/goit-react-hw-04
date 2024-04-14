@@ -2,16 +2,22 @@ import PropTypes from 'prop-types';
 import css from "./ImageCard.module.css";
 
 export default function ImageCard({ image, onClick }) {
+  const handleClick = (event) => {
+    onClick(event);
+  };
+
   return (
-    <div className={css.wrapper} onClick={onClick}>
+    <div className={css.wrapper}>
       <img
         className={css.image}
         src={image.urls.small}
         alt={image.description}
+        onClick={handleClick}
       />
     </div>
   );
 }
+
 ImageCard.propTypes = {
   image: PropTypes.shape({
     urls: PropTypes.shape({
@@ -19,6 +25,7 @@ ImageCard.propTypes = {
     }).isRequired,
     description: PropTypes.string,
   }).isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
+
 
